@@ -1,14 +1,16 @@
 package rabaty;
 
-import main.Konfiguracja;
-
 public class ObliczCenePoRabacieProcentowym implements ObliczCenePoRabacie {
+
+    private double procent;
+
+    public void setProcent(double procent) {
+        this.procent = procent;
+    }
 
     @Override
     public double obliczCenePoRabacie(double cena) {
-        Konfiguracja k = Konfiguracja.getInstance();
-        //double procent = 10.0;
-        double procent = k.getProcentRabatu();
+
         return cena * (1 - procent);
     }
 }

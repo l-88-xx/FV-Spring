@@ -1,14 +1,16 @@
 package rabaty;
 
-import main.Konfiguracja;
-
 public class ObliczCenePoRabacieKwotowym implements ObliczCenePoRabacie {
+
+    private double kwota;
+
+    public void setKwota(double kwota) {
+        this.kwota = kwota;
+    }
 
     @Override
     public double obliczCenePoRabacie(double cena) {
 
-        Konfiguracja k=  Konfiguracja.getInstance();
-        double kwota = k.getKwotaRabatu();
         // nie ma ujemnego rabatu
         return Math.max(0, cena - kwota);
     }

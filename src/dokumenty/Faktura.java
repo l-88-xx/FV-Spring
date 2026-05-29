@@ -1,7 +1,6 @@
 package dokumenty;
 
 import magazyn.Towar;
-import main.Konfiguracja;
 import rabaty.ObliczCenePoRabacie;
 
 import java.util.*;
@@ -28,13 +27,13 @@ public class Faktura {
     public Faktura(Date dataSprzedazy, String kontrahent) {
         this.dataSprzedazy = dataSprzedazy;
         this.kontrahent = kontrahent;
+
         pozycje = new ArrayList<>();
         suma = 0;
-        //liczarkaRabatu = new ObliczCenePoRabacieProcentowym();
-        //liczarkaRabatu = new ObliczCenePoRabacieKwotowym();
+    }
 
-        Konfiguracja k = Konfiguracja.getInstance();
-        liczarkaRabatu = k.getBiezacyRabat();
+    public void setLiczarkaRabatu(ObliczCenePoRabacie liczarkaRabatu) {
+        this.liczarkaRabatu = liczarkaRabatu;
     }
 
     public void dodajPozycje(Towar towar, double ilosc) {

@@ -4,7 +4,9 @@ import dokumenty.Faktura;
 import kategorie.KategoriaProsta;
 import kategorie.KategoriaZlozona;
 import magazyn.Towar;
-import rabatlosowy.LosowyRabat;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import rabaty.ObliczCenePoRabacie;
 import raporty.DrukFaktury;
 import raporty.WydrukFaktury;
 
@@ -24,6 +26,10 @@ public class Ui {
 
     public static void main(String[] args) {
 
+        ApplicationContext context =
+                new ClassPathXmlApplicationContext(
+                        "applicationContext.xml");
+
         //Tworzymy towary
         Towar t1 = new Towar(100, "buty");
         Towar t2 = new Towar(8, "skarpety");
@@ -40,6 +46,10 @@ public class Ui {
 
         //I przykladowa FV
         Faktura f = new Faktura(teraz.getTime(), "Fido");
+
+        f.setLiczarkaRabatu(context.getBean(
+                "rabat",
+                ObliczCenePoRabacie.class));
 
         // rabat naliczony przy dodawaniu pozycji
         f.dodajPozycje(t1, 3);
@@ -68,9 +78,9 @@ public class Ui {
 
         WydrukFaktury.wypiszFakture(f);
 
-        System.out.println("Zewnętrzny rabat");
+/*        System.out.println("Zewnętrzny rabat");
         LosowyRabat lr = new LosowyRabat();
-        System.out.println("Losowy rabat (0–0.3): " + lr.losujRabat());
+        System.out.println("Losowy rabat (0–0.3): " + lr.losujRabat());*/
 
         /**
          * Composite – drzewo kategorii

@@ -1,13 +1,16 @@
+/*
 package raporty;
 
 import main.Konfiguracja;
 import rabatlosowy.LosowyRabat;
 import rabaty.ObliczCenePoRabacie;
 
+*/
 /**
  * Adapter obiektowy, który dostosowuje LosowyRabat do strategii rabatowej.
  * Rabat procentowy w zakresie 0–30%.
- */
+ *//*
+
 
 public class AdapterObiektowy implements ObliczCenePoRabacie {
 
@@ -20,3 +23,4 @@ public class AdapterObiektowy implements ObliczCenePoRabacie {
         return cena - cena * procent;
     }
 }
+*/

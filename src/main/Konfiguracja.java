@@ -1,7 +1,5 @@
 package main;
 
-import rabaty.ObliczCenePoRabacie;
-import raporty.AdapterKlasowy;
 import raporty.DrukFVProsta;
 import raporty.DrukFVZlozona;
 import raporty.DrukFaktury;
@@ -27,20 +25,6 @@ public class Konfiguracja {
         return instance;
     }
 
-    public double getKwotaRabatu() {
-        return 9;
-    }
-
-    public double getProcentRabatu() {
-        return 0.25;
-    }
-
-    public ObliczCenePoRabacie getBiezacyRabat() {
-        //return new ObliczCenePoRabacieKwotowym();
-        //return new ObliczCenePoRabacieProcentowym();
-        //return new AdapterObiektowy();
-        return new AdapterKlasowy();
-    }
 
     public static DrukFaktury pobierzDrukarke() {
         Properties props = new Properties();
