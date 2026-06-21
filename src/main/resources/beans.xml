@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+ http://www.springframework.org/schema/beans
+ https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="rabat" class="rabaty.ObliczCenePoRabacieProcentowym">
+        <property name="procent" value="0.25"/>
+    </bean>
+
+    <bean id="faktura" class="dokumenty.Faktura">
+        <property name="kontrahent" value="Fido"/>
+        <property name="liczarkaRabatu" ref="rabat"/>
+    </bean>
+    <bean id="towar1" class="magazyn.Towar">
+        <constructor-arg value="100"/>
+        <constructor-arg value="buty"/>
+    </bean>
+
+    <bean id="towar2" class="magazyn.Towar">
+        <constructor-arg value="8"/>
+        <constructor-arg value="skarpety"/>
+    </bean>
+
+    <bean id="towar3" class="magazyn.Towar">
+        <constructor-arg value="150"/>
+        <constructor-arg value="sukienka"/>
+    </bean>
+
+</beans>

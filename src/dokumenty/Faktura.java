@@ -13,7 +13,7 @@ import java.util.*;
  * - danych kontrahenta.
  * Przy dodawania pozycji stosowany jest wzorzec STRATEGIA – cena towaru
  * jest modyfikowana zgodnie z aktualnie wybraną metodą obliczania rabatu.
- * Źródło strategii rabatowej pobierane jest z klasy Konfiguracja (SINGLETON).
+ * Strategia rabatu jest wstrzykiwana do obiektu Faktura przez Spring XML.
  */
 
 public class Faktura {
@@ -23,6 +23,20 @@ public class Faktura {
     private double suma;
 
     private ObliczCenePoRabacie liczarkaRabatu;
+
+    public Faktura() {
+        pozycje = new ArrayList<>();
+        suma = 0;
+        dataSprzedazy = new Date();
+    }
+
+    public void setDataSprzedazy(Date dataSprzedazy) {
+        this.dataSprzedazy = dataSprzedazy;
+    }
+
+    public void setKontrahent(String kontrahent) {
+        this.kontrahent = kontrahent;
+    }
 
     public Faktura(Date dataSprzedazy, String kontrahent) {
         this.dataSprzedazy = dataSprzedazy;

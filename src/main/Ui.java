@@ -6,15 +6,11 @@ import kategorie.KategoriaZlozona;
 import magazyn.Towar;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import rabaty.ObliczCenePoRabacie;
 import raporty.DrukFaktury;
 import raporty.WydrukFaktury;
 
-import java.util.Calendar;
-
 /**
  * Klasa przedstawia wzorce projektowe:
- * - SINGLETON (Konfiguracja)
  * - TEMPLATE METHOD (DrukFaktury)
  * - STRATEGIA (rabaty)
  * - ADAPTER (LosowyRabat z JAR)
@@ -28,28 +24,22 @@ public class Ui {
 
         ApplicationContext context =
                 new ClassPathXmlApplicationContext(
-                        "applicationContext.xml");
+                        "beans.xml");
 
-        //Tworzymy towary
-        Towar t1 = new Towar(100, "buty");
-        Towar t2 = new Towar(8, "skarpety");
-        Towar t3 = new Towar(150, "sukienka");
+        //Tworzymy towary (Spring)
+        Towar t1 = context.getBean("towar1", Towar.class);
+        Towar t2 = context.getBean("towar2", Towar.class);
+        Towar t3 = context.getBean("towar3", Towar.class);
 
         System.out.println("Utworzono towary:");
         System.out.println("- " + t1.getNazwa() + " | cena: " + t1.getCena());
         System.out.println("- " + t2.getNazwa() + " | cena: " + t2.getCena());
         System.out.println("- " + t3.getNazwa() + " | cena: " + t3.getCena());
 
-        System.out.println("Aktualna strategia rabatu z Singletonu Konfiguracja");
-
-        Calendar teraz = Calendar.getInstance();
+        System.out.println("Aktualna strategia rabatu ustawiona w Spring XML");
 
         //I przykladowa FV
-        Faktura f = new Faktura(teraz.getTime(), "Fido");
-
-        f.setLiczarkaRabatu(context.getBean(
-                "rabat",
-                ObliczCenePoRabacie.class));
+        Faktura f = context.getBean("faktura", Faktura.class);
 
         // rabat naliczony przy dodawaniu pozycji
         f.dodajPozycje(t1, 3);
